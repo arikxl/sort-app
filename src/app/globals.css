@@ -17,17 +17,23 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  overflow: hidden;
+  color:white;
 }
 
-@layer utilities {
-  .text-balance {
+@layer utilities{
+  .text-balance{
     text-wrap: balance;
   }
 }
+
+.default-line-color {
+  background-color: theme('colors.system.purple50');
+}
+
+.changed-line-color {
+  background-color: theme('colors.system.green50');
+
+}
+
+

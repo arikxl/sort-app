@@ -1,8 +1,8 @@
 'use client'
 
 import { SortingAlgorithmType } from "@/lib/types";
-import { MAX_ANIMATION_SPEED } from "@/lib/utils";
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import { generateRandomNumberFromInterval, MAX_ANIMATION_SPEED } from "@/lib/utils";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 
 interface SortingAlgorithmContextType {
@@ -33,7 +33,34 @@ export const SortingAlgorithmProvider = ({ children }: { children: ReactNode }) 
     const [animationSpeed, setAnimationSpeed] = useState<number>(MAX_ANIMATION_SPEED);
 
 
+    useEffect(() => {
+        resetArrayAndAnimation();
+        window.addEventListener('resize', resetArrayAndAnimation);
+
+        return () => {
+            window.addEventListener('resize', resetArrayAndAnimation);
+        }
+    }, [])
+
     const resetArrayAndAnimation = () => {
+        const contentContainer = document.getElementById('contentContainer');
+        if (!contentContainer) return;
+
+        const contentContainerWidth = contentContainer.clientWidth;
+        const tempArray: number[] = [];
+        const numOfLines = contentContainerWidth / 8;
+        const contentContainerHeight = window.innerHeight;
+        const maxLineHeight = Math.max(contentContainerHeight - 170, 100);
+
+        for (let i = 0; i < numOfLines; i++) {
+            tempArray.push(
+                generateRandomNumberFromInterval(35, maxLineHeight)
+            )
+        }
+
+        setArrayToSort(tempArray);
+        setAnimationComplete(false);
+        setIsSorting(false);
 
     }
 
