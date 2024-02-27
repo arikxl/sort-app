@@ -19,7 +19,7 @@ interface SortingAlgorithmContextType {
     resetArrayAndAnimation: () => void;
     runAnimation: () => void;
 
-    // requiresReset: boolean;
+    requiresReset: boolean;
 }
 
 
@@ -31,6 +31,8 @@ export const SortingAlgorithmProvider = ({ children }: { children: ReactNode }) 
     const [isSorting, setIsSorting] = useState<boolean>(false);
     const [isAnimationComplete, setAnimationComplete] = useState<boolean>(false);
     const [animationSpeed, setAnimationSpeed] = useState<number>(MAX_ANIMATION_SPEED);
+
+    const requiresReset = isAnimationComplete || isSorting;
 
 
     useEffect(() => {
@@ -70,7 +72,7 @@ export const SortingAlgorithmProvider = ({ children }: { children: ReactNode }) 
 
     const value = {
         arrayToSort, setArrayToSort, selectedAlgorithm, setSelectedAlgorithm,
-        isSorting, setIsSorting, isAnimationComplete, setAnimationComplete,
+        isSorting, setIsSorting, isAnimationComplete, setAnimationComplete, requiresReset,
         animationSpeed, setAnimationSpeed, resetArrayAndAnimation, runAnimation
     }
 
