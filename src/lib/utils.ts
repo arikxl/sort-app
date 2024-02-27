@@ -1,3 +1,4 @@
+import { AnimationArrayType, SortingAlgorithmType } from "./types";
 
 
 export function generateRandomNumberFromInterval(min: number, max: number) {
@@ -15,3 +16,17 @@ export const algorithmOptions = [
     { label: 'Insertion', value: 'insertion' },
     { label: 'Selection', value: 'selection' },
 ]
+
+export function generateAnimationArray (
+    selectedAlgorithm: SortingAlgorithmType, isSorting: boolean,
+    array: number[], runAnimation: (animations: AnimationArrayType) => void;
+){
+    switch (selectedAlgorithm) {
+        case 'bubble':
+            //
+            break;
+
+        default:
+            break;
+    }
+}

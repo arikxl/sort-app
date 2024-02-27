@@ -12,12 +12,19 @@ import { RxReset } from "react-icons/rx";
 export default function Home() {
 
   const { arrayToSort, isSorting, animationSpeed, setAnimationSpeed,
-    selectedAlgorithm, setSelectedAlgorithm, requiresReset
+    selectedAlgorithm, setSelectedAlgorithm, requiresReset, resetArrayAndAnimation
   } = useSortingAlgorithmContext()
   // console.log( arrayToSort, isSorting)
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedAlgorithm(e.target.value as SortingAlgorithmType)
+  }
+
+  const handlePlay = () => {
+    if (requiresReset) {
+      resetArrayAndAnimation();
+      return
+    }
   }
 
   return (
